@@ -4,10 +4,10 @@ options:
 
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/dataeng-394602/devops/flask-app:latest', '.']
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/devops/flask-app:latest', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/dataeng-394602/devops/flask-app:latest']
+  args: ['push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/devops/flask-app:latest']
 
 - name: 'gcr.io/cloud-builders/gcloud'
   args: 
@@ -15,10 +15,10 @@ steps:
   - 'deploy'
   - 'flask-app'   
   - '--image'
-  - 'us-central1-docker.pkg.dev/dataeng-394602/devops/flask-app:latest'
+  - 'us-central1-docker.pkg.dev/${PROJECT_ID}/devops/flask-app:latest'
   - '--region'  
   - 'us-central1' 
   - '--allow-unauthenticated'
 
 images:
-  - 'us-central1-docker.pkg.dev/dataeng-394602/devops/flask-app:latest' 
+  - 'us-central1-docker.pkg.dev/${PROJECT_ID}/devops/flask-app:latest' 
