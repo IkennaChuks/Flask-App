@@ -7,7 +7,7 @@ steps:
   args: ['build', '-t', '${_LOCATION}/${PROJECT_ID}/${_IMAGE}', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', ${_LOCATION}/${PROJECT_ID}/${_IMAGE}']
+  args: ['push', '${_LOCATION}/${PROJECT_ID}/${_IMAGE}']
 
 - name: 'gcr.io/cloud-builders/gcloud'
   args: 
