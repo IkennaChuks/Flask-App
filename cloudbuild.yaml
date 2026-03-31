@@ -4,10 +4,10 @@ options:
 
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '${_LOCATION}/${PROJECT_ID}/${_IMAGE}', '.']
+  args: ['build', '-t', '${_IMAGE_PATH}', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '${_LOCATION}/${PROJECT_ID}/${_IMAGE}']
+  args: ['push', '${_IMAGE_PATH}']
 
 - name: 'gcr.io/cloud-builders/gcloud'
   args: 
@@ -15,7 +15,7 @@ steps:
   - 'deploy'
   - 'flask-app'   
   - '--image'
-  - '${_LOCATION}/${PROJECT_ID}/${_IMAGE}'
+  - '${_IMAGE_PATH}'
   - '--region'  
   - 'us-central1' 
   - '--allow-unauthenticated'
@@ -23,7 +23,11 @@ steps:
 substitutions:
   _REGION: 'us-central1'
   _IMAGE: devops/flask-app:latest
-  _LOCATION : us-central1-docker.pkg.dev  
+  _LOCATION : us-central1-docker.pkg.dev 
+  _IMAGE_PATH : ${_LOCATION}/${PROJECT_ID}/${_IMAGE}  
 
 images:
-  - 'us-central1-docker.pkg.dev/${PROJECT_ID}/${_IMAGE}' 
+  - ${_LOCATION}/${PROJECT_ID}/${_IMAGE}
+
+options:
+  dynamicSubstitutions: true
