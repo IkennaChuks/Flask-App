@@ -1,5 +1,6 @@
 options:
   logging: CLOUD_LOGGING_ONLY
+  dynamicSubstitutions: true
 
 
 steps:
@@ -28,6 +29,3 @@ substitutions:
 
 images:
   - ${_LOCATION}/${PROJECT_ID}/${_IMAGE}
-
-options:
-  dynamicSubstitutions: true
