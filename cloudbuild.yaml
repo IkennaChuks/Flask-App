@@ -22,7 +22,7 @@ steps:
 
 substitutions:
   _REGION: 'us-central1'
-  _IMAGE: devops/flask-app:latest'
+  _IMAGE: devops/flask-app:latest
   _LOCATION : us-central1-docker.pkg.dev  
 
 images:
